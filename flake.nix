@@ -2,7 +2,7 @@
   description =
     "Flake providing a package and NixOS module for the Space Station 14 Watchdog.";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
   outputs = { self, nixpkgs }:
     let
@@ -22,6 +22,19 @@
           imports = [ ./nix/test.nix ];
           hostPkgs = pkgs;
           extraBaseModules = { imports = [ self.nixosModules.space-station-14-watchdog ]; };
+        };
+
+        space-station-14-watchdog-docker = pkgs.dockerTools.buildImage {
+          name = "space-station-14-watchdog";
+          tag = "main";
+          copyToRoot = [
+            self.packages.${pkgs.system}.space-station-14-watchdog
+          ];
+          config = {
+            Cmd = [ "/bin/SS14.Watchdog" ];
+            WorkingDir = "/app";
+            Volumes = { "/app" = { }; };
+          };
         };
       });
 
