@@ -34,5 +34,6 @@ buildFHSEnv {
 
   passthru = watchdog.passthru // {
     name = "space-station-14-watchdog-wrapped-${rev}";
+    unwrapped = watchdog;
   };
 }

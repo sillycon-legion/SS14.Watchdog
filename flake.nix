@@ -28,7 +28,11 @@
           name = "space-station-14-watchdog";
           tag = "main";
           copyToRoot = [
-            self.packages.${pkgs.system}.space-station-14-watchdog
+            self.packages.${pkgs.system}.space-station-14-watchdog.unwrapped
+            pkgs.git
+            pkgs.python3
+            pkgs.dotnet-sdk
+            pkgs.zstd
           ];
           config = {
             Cmd = [ "/bin/SS14.Watchdog" ];
