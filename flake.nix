@@ -34,6 +34,7 @@
             pkgs.dotnet-sdk
             pkgs.zstd
             pkgs.cacert
+            pkgs.glibc
           ];
           runAsRoot = ''
             #!${pkgs.runtimeShell}
