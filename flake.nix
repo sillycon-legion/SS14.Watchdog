@@ -33,6 +33,7 @@
             pkgs.python3
             pkgs.dotnet-sdk
             pkgs.zstd
+            pkgs.cacert
           ];
           config = {
             Cmd = [ "/bin/SS14.Watchdog" ];
