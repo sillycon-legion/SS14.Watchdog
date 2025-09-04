@@ -35,6 +35,10 @@
             pkgs.zstd
             pkgs.cacert
           ];
+          runAsRoot = ''
+            #!${pkgs.runtimeShell}
+            mkdir -p /tmp
+          '';
           config = {
             Cmd = [ "/bin/SS14.Watchdog" ];
             WorkingDir = "/app";
