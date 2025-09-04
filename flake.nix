@@ -35,7 +35,6 @@
             pkgs.zstd
             pkgs.cacert
             pkgs.glibc
-            pkgs.libgcc
           ];
           runAsRoot = ''
             #!${pkgs.runtimeShell}
@@ -45,6 +44,15 @@
             Cmd = [ "/bin/SS14.Watchdog" ];
             WorkingDir = "/app";
             Volumes = { "/app" = { }; };
+            Env =
+              let
+                libraries = pkgs.lib.makeLibraryPath [
+                  pkgs.glibc
+                  pkgs.libgcc
+                ];
+              in [
+              "LD_LIBRARY_PATH=${libraries}"
+            ];
           };
         };
       });
