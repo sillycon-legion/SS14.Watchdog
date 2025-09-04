@@ -35,6 +35,7 @@
             pkgs.zstd
             pkgs.cacert
             pkgs.glibc
+            pkgs.gcc.cc.lib
           ];
           runAsRoot = ''
             #!${pkgs.runtimeShell}
