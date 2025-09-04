@@ -49,6 +49,7 @@
                 libraries = pkgs.lib.makeLibraryPath [
                   pkgs.glibc
                   pkgs.libgcc
+                  pkgs.libgcc.lib
                 ];
               in [
               "LD_LIBRARY_PATH=${libraries}"
